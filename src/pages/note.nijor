@@ -1,0 +1,21 @@
+<style>
+    div{
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 55%;
+    }
+</style>
+<template specs=[id]>
+    <div n:asyncLoad="let data = await fetchNote(id)">
+        <h1>{data.title}</h1>
+        <p>{data.content}</p>
+    </div>
+</template>
+<script>
+    async function fetchNote(id){
+        if(!window.notesDB.has(id)) return new Error('404 Not Found');
+        return window.notesDB.get(id);
+    }
+</script>

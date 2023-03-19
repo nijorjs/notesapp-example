@@ -1,0 +1,65 @@
+<style>
+    .container{
+        width: 100vw;
+        height: 5rem;
+        background-color: #0099ff;
+        background-color:  rgb(15, 22, 26);;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+    }
+    img{
+        margin: 0rem 1rem;
+        height: 4rem;
+        width: 4rem;
+        vertical-align: middle;
+    }
+    h2{
+        height: 100%;
+        padding: 0.5rem;
+        display: flex;
+        color: white;
+    }
+    .save{
+        margin: 1rem 0.5rem;
+        margin-left: auto;
+        background-color: transparent;
+        border: none;
+        color: white;
+        display: none;
+    }
+    .save span{
+        vertical-align: middle;
+        color: inherit;
+    }
+    .save:hover{
+        color: #00c3ff;
+    }
+</style>
+<template>
+    <div class="container">
+        <a n:route="/"><img src="{Logo}"/></a>
+        <h2>Notes App</h2>
+        <button class="save" on:routechange="ShowHide(this)" on:click="AddNote()">
+            <span class="material-symbols-sharp">save</span>
+            <span>Save</span>
+        </button>
+    </div>
+</template>
+<script>
+    import Logo from 'images/logo.svg'; // Import the Logo ; you can import images from the src/images directory inside JS using ES6 imports. But this method is not recommended for large images.
+    
+    function ShowHide(_this){
+        if(window.location.pathname==="/new") _this.style.display = "block";
+        else _this.style.display = "none";
+    }
+
+    function AddNote(){
+        let title = document.getElementById('new-title').value;
+        let content = document.getElementById('new-content').value;
+        let id = 'n'+Math.floor(Math.random()*100000);
+        window.notesDB.set(id,{title,content});
+        window.nijor.redirect('/'); // Redirect to the '/' route
+    }
+</script>

@@ -1,0 +1,45 @@
+<style>
+    .main{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .container{
+        margin: auto;
+        margin-top: 1rem;
+        width: 80%;
+    }
+    input{
+        width: 100%;
+        border: none;
+        padding: 0.5rem;
+        font-weight: 600;
+        font-size: 5rem;
+    }
+    textarea{
+        width: 100%;
+        border: none;
+        resize: none;
+        overflow-y: hidden;
+        padding: 1rem;
+        font-size: 2rem;
+    }
+</style>
+<template>
+    <div class="main">
+        <div class="container">
+            <input id="new-title" type="text" placeholder="Title">
+            <textarea id="new-content" placeholder="Write ...."></textarea>
+        </div>
+    </div>
+</template>
+<script defer>
+    // This script with the defer attribute gets executed after the component renders.
+    // The script with no defer attribute gets executed before the component renders.
+    let TextArea = document.getElementsByTagName('textarea')[0];
+    TextArea.addEventListener('input',e=>{
+        TextArea.style.height = "auto";
+        TextArea.style.height = (TextArea.scrollHeight) + "px";
+    });
+</script>

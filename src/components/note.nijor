@@ -1,0 +1,33 @@
+<style>
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        box-shadow:0.1rem 0.1rem 0.50rem rgba(0,0,0,0.5);
+    }
+    span{
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    .delete:hover{color: red;}
+</style>
+<template specs={id,_text_}>
+    <div class="container">
+        <a n:route="note/{id}">
+            <div>
+                <span class="material-symbols-sharp" style="color:#0099ff;">description</span>
+                <span>{_text_}</span>
+            </div>
+        </a>
+        <span class="material-symbols-sharp delete" on:click="deleteNote('{id}')">delete</span>
+    </div>
+</template>
+<script>
+    function deleteNote(id){
+        window.notesDB.delete(id);
+        window.nijor.reload('notes'); // Reload the data within the element with attribite n:reload="notes"
+    }
+</script>

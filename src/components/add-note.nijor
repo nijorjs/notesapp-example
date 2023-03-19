@@ -1,0 +1,21 @@
+<style>
+    a{
+        margin: auto;
+        width: 55%;
+        box-shadow:0.1rem 0.1rem 0.50rem rgba(0,0,0,0.5);
+        padding: 0.5rem;
+    }
+    span{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    a:hover{
+        color: #0099ff;
+    }
+</style>
+<template>
+    <a n:route="/new">
+        <span class="material-symbols-sharp">add</span>
+        <span>Add a new note</span>
+    </a>
+</template>

@@ -1,0 +1,23 @@
+<add n:imported="components/add-note"/>
+<note n:imported="components/note"/>
+<style>
+    .main{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .note-container{
+        margin: auto;
+        margin-top: 1rem;
+        width: 55%;
+    }
+</style>
+<template>
+    <div class="main">
+        <add></add>
+        <div class="note-container" n:for="let [id,data] of window.notesDB" n:reload="notes" >
+            <note id="{id}">{data.title}</note>
+        </div>
+    </div>
+</template>

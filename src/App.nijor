@@ -1,0 +1,8 @@
+<header n:imported="components/header"/>
+<template>
+<header></header>
+    <div id="n-routes" style="margin-top: 5rem;">
+        <!-- All the routes will be rendered inside this div -->
+        <!-- Content outside this div won't get affected on change in route -->
+    </div>
+</template>
