@@ -16,6 +16,7 @@
         padding: 0.5rem;
         font-weight: 600;
         font-size: 5rem;
+        background-color: transparent;
     }
     textarea{
         width: 100%;
@@ -24,17 +25,49 @@
         overflow-y: hidden;
         padding: 1rem;
         font-size: 2rem;
+        background-color: transparent;
     }
+    .save{
+        margin: 0 0.5rem;
+        background-color: transparent;
+        border: none;
+        color: inherit;
+        font-size: large;
+    }
+    .save span{
+        vertical-align: middle;
+        color: inherit;
+    }
+    .save:hover{
+        color: #00c3ff;
+    }
+</style>
+<style dark>
+    input,textarea{color: white;}
 </style>
 <template>
     <div class="main">
         <div class="container">
+            <button class="save" on:click="AddNote()">
+                <span class="material-symbols-sharp">done</span>
+                <span>Save</span>
+            </button>
             <input id="new-title" type="text" placeholder="Title">
             <textarea id="new-content" placeholder="Write ...."></textarea>
         </div>
     </div>
 </template>
+<script>
+    function AddNote(){
+        let title = document.getElementById('new-title').value;
+        let content = document.getElementById('new-content').value;
+        let id = 'n'+Math.floor(Math.random()*100000);
+        window.notesDB.set(id,{title,content});
+        window.nijor.redirect('/'); // Redirect to the '/' route
+    }
+</script>
 <script defer>
+    window.nijor.reactiveVars['title'] = "New Note";
     // This script with the defer attribute gets executed after the component renders.
     // The script with no defer attribute gets executed before the component renders.
     let TextArea = document.getElementsByTagName('textarea')[0];

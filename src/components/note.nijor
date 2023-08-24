@@ -14,6 +14,11 @@
     }
     .delete:hover{color: red;}
 </style>
+<style dark>
+    span{
+        color: white;
+    }
+</style>
 <template specs={id,_text_}>
     <div class="container">
         <a n:route="note/{id}">

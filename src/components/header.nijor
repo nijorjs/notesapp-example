@@ -7,6 +7,7 @@
         padding: 0.5rem;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         position: fixed;
     }
     img{
@@ -21,45 +22,48 @@
         display: flex;
         color: white;
     }
-    .save{
-        margin: 1rem 0.5rem;
-        margin-left: auto;
-        background-color: transparent;
+    .nav-bar{
+        height: 100%;
+        padding: 0.5rem;
+        display: flex;
+        }
+    .nav-bar button{
         border: none;
+        background-color: transparent;
         color: white;
-        display: none;
     }
-    .save span{
-        vertical-align: middle;
-        color: inherit;
+    .nav-bar button:hover{
+        color: #00c3ff;;
     }
-    .save:hover{
-        color: #00c3ff;
-    }
+    .theme-dark-btn{ display: block; }
+    .theme-light-btn{ display: none; }
+</style>
+<style dark>
+    .theme-dark-btn{ display: none; }
+    .theme-light-btn{ display: block; }
 </style>
 <template>
     <div class="container">
+        
         <a n:route="/"><img src="{Logo}"/></a>
-        <h2>Notes App</h2>
-        <button class="save" on:routechange="ShowHide(this)" on:click="AddNote()">
-            <span class="material-symbols-sharp">save</span>
-            <span>Save</span>
-        </button>
+
+        <h2 style="color: white; font-weight: 600;">{{title}}</h2>
+        
+        <div class="nav-bar">
+            <button class="material-symbols-sharp theme-dark-btn" on:click="ChangeTheme()">dark_mode</button>
+            <button class="material-symbols-sharp theme-light-btn" on:click="ChangeTheme()">light_mode</button>
+        </div>
+
     </div>
 </template>
 <script>
     import Logo from 'images/logo.svg'; // Import the Logo ; you can import images from the src/images directory inside JS using ES6 imports. But this method is not recommended for large images.
     
-    function ShowHide(_this){
-        if(window.location.pathname==="/new") _this.style.display = "block";
-        else _this.style.display = "none";
-    }
-
-    function AddNote(){
-        let title = document.getElementById('new-title').value;
-        let content = document.getElementById('new-content').value;
-        let id = 'n'+Math.floor(Math.random()*100000);
-        window.notesDB.set(id,{title,content});
-        window.nijor.redirect('/'); // Redirect to the '/' route
+    function ChangeTheme(){
+        document.body.style.transition = "0.5s";
+        let Theme = window.nijor.getTheme();
+        if(Theme==="auto" || Theme===null) Theme = window.nijor.getColorScheme();
+        if(Theme==="dark") window.nijor.setTheme("light");
+        if(Theme==="light") window.nijor.setTheme("dark");
     }
 </script>

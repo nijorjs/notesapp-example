@@ -21,3 +21,6 @@
         </div>
     </div>
 </template>
+<script defer>
+    window.nijor.reactiveVars['title'] = "Notes App";
+</script>

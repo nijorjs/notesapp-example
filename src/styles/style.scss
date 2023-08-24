@@ -5,8 +5,11 @@ body{
     display:flex;
     flex-direction:column;
     height:100vh;
-    // background-color: rgb(35, 50, 58);
-    // color: white;
+}
+
+body.dark-mode{
+    background-color: rgb(35, 50, 58);
+    color: white;
 }
 
 a{

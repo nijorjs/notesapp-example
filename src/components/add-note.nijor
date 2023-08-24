@@ -13,8 +13,11 @@
         color: #0099ff;
     }
 </style>
+<style dark>
+    span{color: white;}
+</style>
 <template>
-    <a n:route="/new">
+    <a n:route="/note/new">
         <span class="material-symbols-sharp">add</span>
         <span>Add a new note</span>
     </a>
